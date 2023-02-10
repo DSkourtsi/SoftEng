@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "mysql": "^2.18.1"
+  },
+  "name": "softeng22-99",
+  "description": "Group: softeng2022-99 Members: elYYNNN, elYYNNN, elYYNNN",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ntua/SoftEng22-99.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ntua/SoftEng22-99/issues"
+  },
+  "homepage": "https://github.com/ntua/SoftEng22-99#readme"
+}
