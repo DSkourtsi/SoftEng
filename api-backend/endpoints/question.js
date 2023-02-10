@@ -4,11 +4,16 @@ const router = express.Router();
 const DB = require('../sqlConnection').db_con;
 
 function question(req, res){
-
+    
+    let format = req.query.format;
+    if (format == null || format == 'json') f = 0;
+    else if (format == 'csv') f = 1;
+    else f = -1;
+    
     let questionnaireID = req.params.questionnaireID;
     let questionID = req.params.questionID;
     
-    if (questionID.length == 0 || questionnaireID.length == 0){
+    if (f == -1 || questionID.length == 0 || questionnaireID.length == 0){
         res.status(400).send("400: Bad Request");
         return;
     }
@@ -45,7 +50,7 @@ function question(req, res){
                             reson: "500: Internal Server Error \n"+err
                         };
                         res.status(500).send(Json);
-                        return;
+                            return;
                     }
                     
                 
