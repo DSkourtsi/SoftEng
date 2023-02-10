@@ -4,6 +4,11 @@ const https = require("https");
 const healthcheck = require("./endpoints/admin_endpoints/healthcheck.js");
 const resetq = require("./endpoints/admin_endpoints/resetq.js");
 const resetall = require("./endpoints/admin_endpoints/resetall.js");
+const questionnaire = require("./endpoints/questionnaire.js");
+const question = require("./endpoints/question.js");
+const sessans = require("./endpoints/getsessionanswers.js");
+const qans = require("./endpoints/getquestionanswers.js");
+const doans = require("./endpoints/doanswer.js");
 
 // Express for handling GET and POST request
 const express = require("express");
@@ -31,6 +36,12 @@ res.sendFile(__dirname + "/index.html");
 app.use("/intelliq_api", healthcheck);
 app.use("/intelliq_api", resetq);
 app.use("/intelliq_api", resetall);
+app.use("/intelliq_api", questionnaire);
+app.use("/intelliq_api", question);
+app.use("/intelliq_api", sessans);
+app.use("/intelliq_api", qans);
+app.use("/intelliq_api", doans);
+
 // Post request for geetting input from
 // the form
 app.post("/mssg", function (req, res) {
