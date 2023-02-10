@@ -1,6 +1,7 @@
 // Requiring in-built https for creating
 // https server
 const https = require("https");
+const healthcheck = require("./endpoints/admin_endpoints/healthcheck.js");
 
 
 // Express for handling GET and POST request
@@ -26,6 +27,7 @@ app.get("/intelliq_api", function (req, res) {
 res.sendFile(__dirname + "/index.html");
 });
 
+app.use("/intelliq_api", healthcheck);
 // Post request for geetting input from
 // the form
 app.post("/mssg", function (req, res) {
