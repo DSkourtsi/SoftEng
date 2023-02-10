@@ -2,7 +2,8 @@
 // https server
 const https = require("https");
 const healthcheck = require("./endpoints/admin_endpoints/healthcheck.js");
-
+const resetq = require("./endpoints/admin_endpoints/resetq.js");
+const resetall = require("./endpoints/admin_endpoints/resetall.js");
 
 // Express for handling GET and POST request
 const express = require("express");
@@ -28,6 +29,8 @@ res.sendFile(__dirname + "/index.html");
 });
 
 app.use("/intelliq_api", healthcheck);
+app.use("/intelliq_api", resetq);
+app.use("/intelliq_api", resetall);
 // Post request for geetting input from
 // the form
 app.post("/mssg", function (req, res) {

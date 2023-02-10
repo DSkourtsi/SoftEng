@@ -1,7 +1,7 @@
 const mysql = require("mysql");
 const express = require("express");
 const router = express.Router();
-const DB = require('../../sqlConnection').con;
+const DB = require('../../sqlConnection').db_con;
 
 function resetq(req, res){
 
@@ -13,19 +13,14 @@ function resetq(req, res){
     }
 
     else{
-        var myquery="DELETE FROM answers\
+        const myquery="DELETE FROM answers\
                      WHERE qID IN (\
                         SELECT qID\
-                        FROM questionnaire\
-                        WHERE questionnaireID = '${questionnaireID}'";
-        const db_string = {
-            host: "localhost",
-            user: "root",
-            password: "intelliq",
-            database: 'intelliq_database'
-        };
+                        FROM question\
+                        WHERE questionnaireID = ?)";
+        const parameters = [questionnaireID]
 
-        DB.query(myquery, function(err, result, fields){
+        DB.query(myquery, parameters, function(err, result, fields){
             if (err) {
                 var Json = {
                     status: "failed",
