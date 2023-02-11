@@ -1,8 +1,8 @@
 // const axios = require("axios");
 const env = require("../env.js");
 
-function questionnaireFunction(questionnaireID) {
-    env.instance.get(`${env.baseURL}/questionnaire/${questionnaireID}`).then((res) => {
+function questionnaireFunction(questionnaireID, format) {
+    env.instance.get(`${env.baseURL}/questionnaire/${questionnaireID}?format=${format}`).then((res) => {
         console.log(res.data);
     });
 }

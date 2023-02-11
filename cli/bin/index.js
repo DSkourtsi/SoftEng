@@ -5,9 +5,9 @@ const env = require("../env.js");
 
 const functionsDirectory = "../scopes";
 
-const { healthcheckFunction } = require(`${adminDirectory}/admin/healthcheck.js`);
-const { resetallFunction } = require(`${adminDirectory}/admin/resetall.js`);
-const { resetqFunction } = require(`${adminDirectory}/admin/resetq.js`);
+const { healthcheckFunction } = require(`${functionsDirectory}/admin/healthcheck.js`);
+const { resetallFunction } = require(`${functionsDirectory}/admin/resetall.js`);
+const { resetqFunction } = require(`${functionsDirectory}/admin/resetq.js`);
 
 const { questionnaireFunction } = require(`${functionsDirectory}/questionnaire.js`);
 const { questionFunction } = require(`${functionsDirectory}/question.js`);
@@ -25,11 +25,11 @@ const arguments = {
     resetall: [],
     resetq: [argv.questionnaire_id],
     
-    questionnaire: [argv.questionnaire_id],
-    question: [argv.questionnaire_id, argv.question_id],
+    questionnaire: [argv.questionnaire_id, argv.format],
+    question: [argv.questionnaire_id, argv.question_id, argv.format],
     doanswer: [argv.questionnaire_id, argv.question_id, argv.session_id, argv.option_id],
-    getsessionanswers: [argv.questionnaire_id, argv.session_id],
-    getquestionanswers: [argv.questionnaire_id, argv.question_id],
+    getsessionanswers: [argv.questionnaire_id, argv.session_id, argv.format],
+    getquestionanswers: [argv.questionnaire_id, argv.question_id, argv.format],
 };
 
 const functionToCall = {

@@ -3,9 +3,12 @@ const express = require("express");
 const router = express.Router();
 const DB = require('../sqlConnection').db_con;
 
+const resultformat = require("../resultFormat.js");
+
 function questionnaire(req, res){
 
     let questionnaireID = req.params.questionnaireID;
+    const format = req.query.format;
     
     if (questionnaireID.length == 0){
         res.status(400).send("400: Bad Request");
@@ -49,15 +52,19 @@ function questionnaire(req, res){
                     
                 
                     else{
-                        var Json = {
-                            status: "OK",
-                            questionnaireID: questionnaireID,
-                            questionnaireTitle: result[0].questionnaireTitle,
-                            keywords: result[0].keywords,
-                            questions: res_questions
-                        };
-                        res.status(200).send(Json);
-                        return;
+                        let qList = JSON.parse(JSON.stringify(res_questions));
+
+                        resultformat.questionnaire(
+                            res,
+                            200,
+                            {
+                                questionnaireID: questionnaireID,
+                                questionnaireTitle: result[0].questionnaireTitle,
+                                keywords: result[0].keywords,
+                                questions: qList
+                            },
+                            format
+                        );
                     }
                 });
             }

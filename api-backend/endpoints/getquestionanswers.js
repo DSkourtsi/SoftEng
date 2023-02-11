@@ -3,10 +3,13 @@ const express = require("express");
 const router = express.Router();
 const DB = require('../sqlConnection').db_con;
 
+const resultformat = require("../resultFormat.js");
+
 function qans(req, res){
 
     let questionnaireID = req.params.questionnaireID;
     let questionID = req.params.questionID;
+    const format = req.query.format;
     
     if (questionnaireID.length == 0 || questionID.length == 0){
         res.status(400).send("400: Bad Request");
@@ -33,14 +36,18 @@ function qans(req, res){
                 return;
             }
             else{
-                var Json = {
-                    status: "OK",
-                    questionnaireID: questionnaireID,
-                    questionID: questionID,
-                    answers: result
-                };
-                res.status(200).send(Json);
-                return;
+                let ansList = JSON.parse(JSON.stringify(result));
+
+                resultformat.getqans(
+                    res,
+                    200,
+                    {
+                        questionnaireID: questionnaireID,
+                        questionID: questionID,
+                        answers: ansList
+                    },
+                    format
+                );
             }
         });
     }

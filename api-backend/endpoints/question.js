@@ -3,17 +3,15 @@ const express = require("express");
 const router = express.Router();
 const DB = require('../sqlConnection').db_con;
 
+const resultformat = require("../resultFormat.js");
+
 function question(req, res){
-    
-    let format = req.query.format;
-    if (format == null || format == 'json') f = 0;
-    else if (format == 'csv') f = 1;
-    else f = -1;
     
     let questionnaireID = req.params.questionnaireID;
     let questionID = req.params.questionID;
+    const format = req.query.format;
     
-    if (f == -1 || questionID.length == 0 || questionnaireID.length == 0){
+    if (questionID.length == 0 || questionnaireID.length == 0){
         res.status(400).send("400: Bad Request");
         return;
     }
@@ -55,17 +53,21 @@ function question(req, res){
                     
                 
                     else{
-                        var Json = {
-                            status: "OK",
-                            questionnaireID: result[0].questionnaireID,
-                            qID: questionID,
-                            qtext: result[0].qtext,
-                            required: result[0].required,
-                            type: result[0].type,
-                            options: res_opt
-                        };
-                        res.status(200).send(Json);
-                        return;
+                        let optList = JSON.parse(JSON.stringify(res_opt));
+
+                        resultformat.question(
+                            res,
+                            200,
+                            {
+                                questionnaireID: result[0].questionnaireID,
+                                questionID: questionID,
+                                qtext: result[0].qtext,
+                                required: result[0].required,
+                                type: result[0].type,
+                                options: optList
+                            },
+                            format
+                        );
                     }
                 });
             }

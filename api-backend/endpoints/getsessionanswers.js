@@ -3,10 +3,13 @@ const express = require("express");
 const router = express.Router();
 const DB = require('../sqlConnection').db_con;
 
+const resultformat = require("../resultFormat.js");
+
 function sessans(req, res){
 
     let questionnaireID = req.params.questionnaireID;
     let session = req.params.session;
+    const format = req.query.format;
     
     if (questionnaireID.length == 0 || session.length == 0){
         res.status(400).send("400: Bad Request");
@@ -34,14 +37,18 @@ function sessans(req, res){
                 return;
             }
             else{
-                var Json = {
-                    status: "OK",
-                    questionnaireID: questionnaireID,
-                    session: session,
-                    answers: result
-                };
-                res.status(200).send(Json);
-                return;
+                let ansList = JSON.parse(JSON.stringify(result));
+
+                resultformat.getsessans(
+                    res,
+                    200,
+                    {
+                        questionnaireID: questionnaireID,
+                        session: session,
+                        answers: ansList
+                    },
+                    format
+                );
             }
         });
     }
