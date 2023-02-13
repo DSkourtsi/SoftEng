@@ -2,6 +2,7 @@
 // https server
 const https = require("https");
 const healthcheck = require("./endpoints/admin_endpoints/healthcheck.js");
+const questionnaire_upd = require("./endpoints/admin_endpoints/questionnaire_upd.js");
 const resetq = require("./endpoints/admin_endpoints/resetq.js");
 const resetall = require("./endpoints/admin_endpoints/resetall.js");
 const questionnaire = require("./endpoints/questionnaire.js");
@@ -34,6 +35,7 @@ res.sendFile(__dirname + "/index.html");
 });
 
 app.use("/intelliq_api", healthcheck);
+app.use("/intelliq_api", questionnaire_upd);
 app.use("/intelliq_api", resetq);
 app.use("/intelliq_api", resetall);
 app.use("/intelliq_api", questionnaire);
