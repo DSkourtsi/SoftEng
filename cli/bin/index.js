@@ -51,3 +51,4 @@ if (!arguments[scope].every((item) => item)) {
 }
 
 functionToCall[scope](...arguments[scope]);
+
