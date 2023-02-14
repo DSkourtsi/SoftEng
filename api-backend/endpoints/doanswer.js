@@ -16,25 +16,57 @@ function doans(req, res){
     }
 
     else{
+        const init_query = "SELECT * FROM user_session\
+                WHERE session = ?";
+        const init_param = [session]
+
+        const query="INSERT INTO user_session (session)\
+                       VALUES (?)";
+        const param = [session]
+        
         const myquery="INSERT INTO answers (optID, session, qID)\
                        VALUES(?,?,?)";
         const parameters = [optionID, session, questionID]
 
-        DB.query(myquery, parameters, function(err, result, fields){
+        DB.query(init_query, init_param, function(err, init_result, fields){
             if (err) {
                 var Json = {
                     status: "failed",
-                    reson: "500: Internal Server Error \n"+err
+                    reson: "500: first Internal Server Error \n"+err
                 };
                 res.status(500).send(Json);
                 return;
               }
             else{
-                var Json = {
-                    status: "OK",
-                };
-                res.status(200).send(Json);
-                return;
+                if (init_result.length == 0){
+                    DB.query(query, param, function(err, temp_result, fields){
+                        if (err) {
+                            var Json = {
+                                status: "failed",
+                                reson: "500: first Internal Server Error \n"+err
+                            };
+                            res.status(500).send(Json);
+                            return;
+                          }
+                        });
+                }
+                DB.query(myquery, parameters, function(err, result, fields){
+                    if (err) {
+                        var Json = {
+                            status: "failed",
+                            reson: "500: Internal Server Error \n"+err
+                        };
+                        res.status(500).send(Json);
+                        return;
+                    }
+                    else{
+                        var Json = {
+                            status: "OK",
+                        };
+                        res.status(200).send(Json);
+                        return;
+                    }
+                });
             }
         });
     }
