@@ -7,6 +7,7 @@ const functionsDirectory = "../scopes";
 
 const { healthcheckFunction } = require(`${functionsDirectory}/admin/healthcheck.js`);
 const { resetallFunction } = require(`${functionsDirectory}/admin/resetall.js`);
+const { questionnaire_updFunction } = require(`${functionsDirectory}/admin/questionnaire_upd.js`);
 const { resetqFunction } = require(`${functionsDirectory}/admin/resetq.js`);
 
 const { questionnaireFunction } = require(`${functionsDirectory}/questionnaire.js`);
@@ -23,6 +24,7 @@ const arguments = {
     
     healthcheck: [],
     resetall: [],
+    questionnaire_upd: [argv.source],
     resetq: [argv.questionnaire_id],
     
     questionnaire: [argv.questionnaire_id, argv.format],
@@ -36,6 +38,7 @@ const functionToCall = {
 
     healthcheck: healthcheckFunction,
     resetall: resetallFunction,
+    questionnaire_upd: questionnaire_updFunction,
     resetq: resetqFunction,
 
     questionnaire: questionnaireFunction,
