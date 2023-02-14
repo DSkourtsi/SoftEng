@@ -4,7 +4,7 @@ const FormData = require('form-data');
 const path = require('path');
 
 function questionnaire_updFunction(source) {
-    const filePath = path.join(process.cwd(), '..', 'data', source);
+    const filePath = path.join(path.resolve('.'), '..', 'data', source);
     const fileStream = fs.createReadStream(filePath);
 
     const formData = new FormData();
