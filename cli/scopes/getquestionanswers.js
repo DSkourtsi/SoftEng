@@ -1,4 +1,3 @@
-// const axios = require("axios");
 const env = require("../env.js");
 
 function getqansFunction(questionnaireID, questionID, format) {
