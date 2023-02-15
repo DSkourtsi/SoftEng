@@ -9,7 +9,6 @@ function resetall(req, res){
     const myquery_ans="DELETE FROM answers";
     DB.query(myquery_ans, function(err, result, fields){
         if (err) {
-            console.log("TESTprob");
             var Json = {
                 status: "failed",
                 error: err
@@ -22,7 +21,6 @@ function resetall(req, res){
                 const myquery_opt="DELETE FROM options";
                 DB.query(myquery_opt, err => {
                     if (err) {
-                        console.log("TESTprob");
                         var Json = {
                             status: "failed",
                             error: err
@@ -35,7 +33,6 @@ function resetall(req, res){
                         const myquery_q="DELETE FROM question";
                         DB.query(myquery_q, err => {
                             if (err) {
-                                console.log("TESTprob");
                                 var Json = {
                                     status: "failed",
                                     error: err
@@ -48,7 +45,6 @@ function resetall(req, res){
                                 const myquery_qn="DELETE FROM questionnaire";
                                 DB.query(myquery_qn, err => {
                                     if (err) {
-                                        console.log("TESTprob");
                                         var Json = {
                                             status: "failed",
                                             error: err
@@ -60,7 +56,6 @@ function resetall(req, res){
                                         const myquery_user="DELETE FROM user_session";
                                         DB.query(myquery_user, err => {
                                             if (err) {
-                                                console.log("TESTprob");
                                                 var Json = {
                                                     status: "failed",
                                                     error: err
@@ -71,7 +66,6 @@ function resetall(req, res){
     
     
                                             else{
-                                                console.log("TESTprob", flag);
                                                 var Json = {
                                                     status: "OK"
                                                 };
