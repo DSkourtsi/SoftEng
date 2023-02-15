@@ -1,7 +1,7 @@
 # Software Engineering Project 2022-2023
 
 Group: softeng2022-99
-Members: elYYNNN, elYYNNN, elYYNNN
+Members: el8044, el19439, el18155
 # Introduction
 
 This repository houses the implementation and documentation of the "Software Engineering" project. Its main purpose is to create a smart questionnaire for online research.
