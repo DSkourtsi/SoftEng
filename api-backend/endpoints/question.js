@@ -11,7 +11,7 @@ function question(req, res){
     let questionID = req.params.questionID;
     const format = req.query.format;
     
-    if (questionID.length == 0 || questionnaireID.length == 0){
+    if (questionID.length == 0 || questionnaireID.length == 0 || questionnaireID == ':questionnaireID' || questionID == ':questionID'){
         res.status(400).send("400: Bad Request");
         return;
     }

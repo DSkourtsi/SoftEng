@@ -11,7 +11,7 @@ function qans(req, res){
     let questionID = req.params.questionID;
     const format = req.query.format;
     
-    if (questionnaireID.length == 0 || questionID.length == 0){
+    if (questionnaireID.length == 0 || questionID.length == 0 || questionnaireID == ':questionnaireID' || questionID == ':questionID'){
         res.status(400).send("400: Bad Request");
         return;
     }
