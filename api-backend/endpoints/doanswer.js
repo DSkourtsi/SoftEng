@@ -10,7 +10,7 @@ function doans(req, res){
     let session = req.params.session;
     let optionID = req.params.optionID;
     
-    if (questionnaireID.length == 0 || questionID.length == 0 || session.length == 0 || optionID == 0){
+    if (questionnaireID.length == 0 || questionID.length == 0 || session.length == 0 || optionID == 0 || questionnaireID == ':questionnaireID' || questionID == ':questionID' || session == ':session' || optionID == ':optionID'){
         res.status(400).send("400: Bad Request");
         return;
     }

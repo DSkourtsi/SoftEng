@@ -11,7 +11,7 @@ function sessans(req, res){
     let session = req.params.session;
     const format = req.query.format;
     
-    if (questionnaireID.length == 0 || session.length == 0){
+    if (questionnaireID.length == 0 || session.length == 0 || questionnaireID == ':questionnaireID' || session == ':session'){
         res.status(400).send("400: Bad Request");
         return;
     }
