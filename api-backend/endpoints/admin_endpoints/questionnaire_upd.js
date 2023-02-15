@@ -34,7 +34,7 @@ db_con.connect((err) => {
     console.log('Connected to database as id ' + db_con.threadId);
   });
 
-const questionnaire_upload = (file) => {
+const questionnaire_upload = (file, res) => {
     return new Promise((resolve, reject) => {
         fs.readFile(file.path, (err, data) => {
             if (err) {
@@ -49,6 +49,7 @@ const questionnaire_upload = (file) => {
                     (error, results) => {
                         if (error) {
                             console.error(error);
+                            return res.status(500).json({ status: "failed", error: error});
                         }
                         else {
                             jsonData.questions.forEach(question => {
@@ -58,6 +59,7 @@ const questionnaire_upload = (file) => {
                                     (error, results) => {
                                         if (error) {
                                             console.error(error);
+                                            return res.status(500).json({ status: "failed", error: error});
                                         }
                                         else {
                                             question.options.forEach(options => {
@@ -71,6 +73,7 @@ const questionnaire_upload = (file) => {
                                                     (error, results) => {
                                                         if (error) {
                                                             console.error(error);
+                                                            return res.status(500).json({ status: "failed", error: error});
                                                         }
                                                         else {
                                                             console.log(results);
@@ -99,7 +102,7 @@ router.post("/admin/questionnaire_upd", (req, res) => {
     if (!req.file) {
         return res.status(400).json({ error: 'File is required.' });
     }    
-    questionnaire_upload(req.file).then((result) => {
+    questionnaire_upload(req.file, res).then((result) => {
         res.json(result);
     }).catch((error) => {
         res.status(400).json(error);
