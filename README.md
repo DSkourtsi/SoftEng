@@ -4,7 +4,7 @@ Group: softeng2022-99
 Members: elYYNNN, elYYNNN, elYYNNN
 # Introduction
 
-This repository houses the implementation and documentation of the "Software Engineering" project. Its main purpose is to calculate debts between different highway toll providers.
+This repository houses the implementation and documentation of the "Software Engineering" project. Its main purpose is to create a smart questionnaire for online research.
 
 # Components
 
@@ -26,19 +26,16 @@ It offers the same functionality as the API.
 
 ### Database
 
-For the database, MySQL/MySQLWorkbench was used.
+For the database, MySQL/XAMPP was used.
 
 # Installation
 
-To install all node dependencies:
+To install all node dependencies and to start the API:
 
-> bash install.sh
-
-To start the api:
-
-> bash api.sh
+> build.bat
 
 To start the frontend :
 
-> bash frontend.sh
+> cd ../frontend
+npm start
 
