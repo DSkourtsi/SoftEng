@@ -12,8 +12,8 @@ pause
 echo se2299 resetall
 call se2299 resetall
 pause
-echo se2299 questionnaire_upd --source test.json
-call se2299 questionnaire_upd --source test.json
+echo se2299 questionnaire_upd --source dummy.json
+call se2299 questionnaire_upd --source dummy.json
 pause
 echo se2299 questionnaire --questionnaire_id 1111 --format json
 call se2299 questionnaire --questionnaire_id 1111 --format json
