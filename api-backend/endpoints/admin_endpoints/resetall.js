@@ -53,7 +53,7 @@ function resetall(req, res){
                                         return;
                                         }
                                     else{
-                                        const myquery_user="DELETE FROM user_session";
+                                        /*const myquery_user="DELETE FROM user_session";
                                         DB.query(myquery_user, err => {
                                             if (err) {
                                                 var Json = {
@@ -65,13 +65,13 @@ function resetall(req, res){
                                                 }
     
     
-                                            else{
+                                            else{*/
                                                 var Json = {
                                                     status: "OK"
                                                 };
                                                 res.status(200).send(Json);
                                                 return;
-                                            }
+                                            //}
                                         });
                                     }
                                 });
