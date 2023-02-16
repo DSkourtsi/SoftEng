@@ -72,7 +72,7 @@ function resetall(req, res){
                                                 res.status(200).send(Json);
                                                 return;
                                             //}
-                                        });
+                                        //});
                                     }
                                 });
                             }
