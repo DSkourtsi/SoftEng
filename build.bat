@@ -1,3 +1,5 @@
+call npm install
+
 cd cli
 call npm install -g
 
