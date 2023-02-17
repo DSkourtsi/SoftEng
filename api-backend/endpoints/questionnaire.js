@@ -9,7 +9,6 @@ function questionnaire(req, res){
 
     let questionnaireID = req.params.questionnaireID;
     const format = req.query.format;
-    console.log(questionnaireID.length, questionnaireID);
     if (questionnaireID.length == 0 || questionnaireID == ':questionnaireID'){
         
         res.status(400).send("400: Bad Request");
