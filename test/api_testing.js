@@ -1,4 +1,4 @@
-const assert = require('assert');
+const { expect } = require('chai');
 const axios = require('axios');
 const fs = require('fs');
 const FormData = require('form-data');
@@ -16,7 +16,7 @@ describe('API Tests', function() {
     }, 1000);
   });
 
-  it('should return a 200 status code for the /admin/healthcheck endpoint', function() {
+  it('should return a 200 status code for the /admin/healthcheck endpoint', function(done) {
     axios.get('https://localhost:9103/intelliq_api/admin/healthcheck')
         .then((response) => {
           expect(response.status).to.equal(200);
@@ -24,7 +24,7 @@ describe('API Tests', function() {
         })
         .catch((error) => done(error));
     });
-  it('should return a 200 status code for the /admin/resetall endpoint', function() {
+  it('should return a 200 status code for the /admin/resetall endpoint', function(done) {
       axios.post('https://localhost:9103/intelliq_api/admin/resetall')
         .then((response) => {
           expect(response.status).to.equal(200);
@@ -32,7 +32,7 @@ describe('API Tests', function() {
         })
         .catch((error) => done(error));
     });
-  it('should return a 200 status code for the /admin/questionnaire_upd endpoint', function() {
+  it('should return a 200 status code for the /admin/questionnaire_upd endpoint', function(done) {
     const filePath = './data/dummy.json';
     const fileStream = fs.createReadStream(filePath);
     const formData = new FormData();
@@ -46,7 +46,7 @@ describe('API Tests', function() {
         })
         .catch((error) => done(error));
   });
-  it('should return a 200 status code for the /admin/resetq/:questionnaireID endpoint', function() {
+  it('should return a 200 status code for the /admin/resetq/:questionnaireID endpoint', function(done) {
     axios.post(`${apiBaseUrl}/admin/resetq/1111`)
         .then((response) => {
           expect(response.status).to.equal(200);
@@ -54,7 +54,7 @@ describe('API Tests', function() {
         })
         .catch((error) => done(error));
     });
-  it('should return a 200 status code for the /questionnaire/:questionnaireID endpoint', function() {
+  it('should return a 200 status code for the /questionnaire/:questionnaireID endpoint', function(done) {
     axios.get('https://localhost:9103/intelliq_api/questionnaire/1111')
         .then((response) => {
           expect(response.status).to.equal(200);
@@ -62,14 +62,14 @@ describe('API Tests', function() {
         })
         .catch((error) => done(error));
   });
-  it('should return a 200 status code for the /question/:questionnaireID/:questionID endpoint', function() {
+  it('should return a 200 status code for the /question/:questionnaireID/:questionID endpoint', function(done) {
     axios.get('https://localhost:9103/intelliq_api/question/1111/Q02')
         .then((response) => {
           expect(response.status).to.equal(200);
           done();
         })
   });
-  it('should return a 200 status code for the /doanswer/:questionnaireID/:questionID/:sessionID/:optionID', function() {
+  it('should return a 200 status code for the /doanswer/:questionnaireID/:questionID/:sessionID/:optionID', function(done) {
     axios.post('https://localhost:9103/intelliq_api/doanswer/1111/Q03/aaaa/Q03A1')
     .then((response) => {
       expect(response.status).to.equal(200);
@@ -77,7 +77,7 @@ describe('API Tests', function() {
     })
     .catch((error) => done(error));
   });
-  it('should return a 200 status code for the /getsessionanswers/:questionnaireID/:sessionID', function() {
+  it('should return a 200 status code for the /getsessionanswers/:questionnaireID/:sessionID', function(done) {
     axios.get('https://localhost:9103/intelliq_api/getsessionanswers/1111/aaaa')
     .then((response) => {
       expect(response.status).to.equal(200);
@@ -85,7 +85,7 @@ describe('API Tests', function() {
     })
     .catch((error) => done(error));
   });
-  it('should return a 200 status code for the /getquestionanswers/:questionnaireID/:questionID', function() {
+  it('should return a 200 status code for the /getquestionanswers/:questionnaireID/:questionID', function(done) {
     axios.get('https://localhost:9103/intelliq_api/getquestionanswers/1111/Q03')
     .then((response) => {
       expect(response.status).to.equal(200);
