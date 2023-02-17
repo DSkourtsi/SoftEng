@@ -5,7 +5,6 @@ const DB = require('../../sqlConnection').db_con;
 
 function resetall(req, res){
 
-    console.log("TEST");
     const myquery_ans="DELETE FROM answers";
     DB.query(myquery_ans, function(err, result, fields){
         if (err) {
